@@ -7,7 +7,7 @@ This awesome library is wrote on swift 2.2
 
 ## Usage
 
-### Initialization segmented control with icon
+#### Initialization segmented control with icon
 ``` swift
 let segmentedControl = DPSegmentedControl.init(
             FrameWithIcon: CGRectMake(8, 50, screen.width - 16, 44),
@@ -21,7 +21,7 @@ let segmentedControl = DPSegmentedControl.init(
             orientation: ComponentOrientation.LeftRight)
 ```
 
-### Initialization segmented control without icon
+#### Initialization segmented control without icon
 ``` swift
 let segmentedControl = DPSegmentedControl.init(
             FrameWithoutIcon: CGRectMake(8, 50, screen.width - 16, 44),
@@ -46,8 +46,6 @@ segmentedControl.selectedIndex = 1
 
 ## Sample
 
-![Screenshot](https://s31.postimg.org/mlcvo7prv/Simulator_Screen_Shot_Jun_26_2016_8_05_43_PM.png)
-![Screenshot](https://s31.postimg.org/8kcf6aidn/Simulator_Screen_Shot_Jun_26_2016_8_05_17_PM.png)
 ![gif](http://i.giphy.com/iZvJT92KGkeiI.gif)
 
 [This is the video sample](https://youtu.be/PaVUNysxyf4)
