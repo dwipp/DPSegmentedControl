@@ -10,13 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var segmentedControl: DPSegmentedControl!
+//    var segmentedControl: DPSegmentedControl!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let screen = UIScreen.mainScreen().bounds
         
-        segmentedControl = DPSegmentedControl.init(
+        let segmentedControl = DPSegmentedControl.init(
             FrameWithIcon: CGRectMake(8, 50, screen.width - 16, 44),
             items: ["Happy", "Normal", "Sad"],
             icons: [UIImage(named: "happy_gray")!, UIImage(named: "flat_gray")!, UIImage(named: "sad_gray")!],
@@ -27,10 +27,10 @@ class ViewController: UIViewController {
             selectedTextColor: UIColor(hex: "#FFFFFF"),
             orientation: ComponentOrientation.LeftRight)
         
-        segmentedControl?.selectedIndex = 1
+        segmentedControl.selectedIndex = 1
         
-        segmentedControl?.addTarget(self, action: #selector(self.action(_:)), forControlEvents: .ValueChanged)
-        self.view.addSubview(segmentedControl!)
+        segmentedControl.addTarget(self, action: #selector(self.action(_:)), forControlEvents: .ValueChanged)
+        self.view.addSubview(segmentedControl)
         
     }
     

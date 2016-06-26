@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		967DCF091D1FE0F30054C6DF /* DPSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967DCF081D1FE0F30054C6DF /* DPSegmentedControl.swift */; };
+		967DCF0C1D200F570054C6DF /* DPSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967DCF0B1D200F570054C6DF /* DPSegmentedControl.swift */; };
 		96EC3F2F1CFC2C8E00BD8BA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EC3F2E1CFC2C8E00BD8BA7 /* AppDelegate.swift */; };
 		96EC3F311CFC2C8E00BD8BA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EC3F301CFC2C8E00BD8BA7 /* ViewController.swift */; };
 		96EC3F341CFC2C8E00BD8BA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96EC3F321CFC2C8E00BD8BA7 /* Main.storyboard */; };
@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		967DCF081D1FE0F30054C6DF /* DPSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPSegmentedControl.swift; sourceTree = "<group>"; };
+		967DCF0B1D200F570054C6DF /* DPSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPSegmentedControl.swift; sourceTree = "<group>"; };
 		96EC3F2B1CFC2C8E00BD8BA7 /* Segmented.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Segmented.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96EC3F2E1CFC2C8E00BD8BA7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96EC3F301CFC2C8E00BD8BA7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -37,6 +37,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		967DCF0A1D200F570054C6DF /* DPSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				967DCF0B1D200F570054C6DF /* DPSegmentedControl.swift */,
+			);
+			path = DPSegmentedControl;
+			sourceTree = SOURCE_ROOT;
+		};
 		96EC3F221CFC2C8E00BD8BA7 = {
 			isa = PBXGroup;
 			children = (
@@ -56,8 +64,8 @@
 		96EC3F2D1CFC2C8E00BD8BA7 /* Segmented */ = {
 			isa = PBXGroup;
 			children = (
+				967DCF0A1D200F570054C6DF /* DPSegmentedControl */,
 				96EC3F2E1CFC2C8E00BD8BA7 /* AppDelegate.swift */,
-				967DCF081D1FE0F30054C6DF /* DPSegmentedControl.swift */,
 				96EC3F301CFC2C8E00BD8BA7 /* ViewController.swift */,
 				96EC3F321CFC2C8E00BD8BA7 /* Main.storyboard */,
 				96EC3F351CFC2C8E00BD8BA7 /* Assets.xcassets */,
@@ -140,8 +148,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				96EC3F311CFC2C8E00BD8BA7 /* ViewController.swift in Sources */,
-				967DCF091D1FE0F30054C6DF /* DPSegmentedControl.swift in Sources */,
 				96EC3F2F1CFC2C8E00BD8BA7 /* AppDelegate.swift in Sources */,
+				967DCF0C1D200F570054C6DF /* DPSegmentedControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
