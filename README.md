@@ -1,8 +1,8 @@
 # DPSegmentedControl
 
 This is a custom Segmented Control with icon and text on every segment.
-DPSegmentedControl is tested on iOS 9.2
-This awesome library is wrote on swift 2.2
+DPSegmentedControl is tested on iOS 10.0
+This awesome library is wrote on swift 3
 
 
 ## Usage
