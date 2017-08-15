@@ -1,8 +1,8 @@
 # DPSegmentedControl
 
 This is a custom Segmented Control with icon and text on every segment.
-DPSegmentedControl is tested on iOS 9.2
-This awesome library is wrote on swift 2.2
+DPSegmentedControl is tested on iOS 10.0
+This awesome library is wrote on swift 3
 
 
 ## Usage
@@ -10,7 +10,7 @@ This awesome library is wrote on swift 2.2
 #### Initialization segmented control with icon
 ``` swift
 let segmentedControl = DPSegmentedControl.init(
-            FrameWithIcon: CGRectMake(8, 50, screen.width - 16, 44),
+            FrameWithIcon: CGRect(x: 8, y: 50, width: view.frame.width - 16, height: 44),
             items: ["Happy", "Normal", "Sad"],
             icons: [UIImage(named: "happy_gray")!, UIImage(named: "flat_gray")!, UIImage(named: "sad_gray")!],
             selectedIcons: [UIImage(named: "happy_white")!, UIImage(named: "flat_white")!, UIImage(named: "sad_white")!],
@@ -24,7 +24,7 @@ let segmentedControl = DPSegmentedControl.init(
 #### Initialization segmented control without icon
 ``` swift
 let segmentedControl = DPSegmentedControl.init(
-            FrameWithoutIcon: CGRectMake(8, 50, screen.width - 16, 44),
+            FrameWithoutIcon: CGRect(x: 8, y: 50, width: view.frame.width - 16, height: 44),
             items: ["Happy", "Normal", "Sad"],
             backgroundColor: UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1),
             thumbColor: UIColor.init(hex: "#54C3EF"),
@@ -35,7 +35,7 @@ let segmentedControl = DPSegmentedControl.init(
 
 ``` swift
 // To get the changed value event, set it manually on your view controller
-segmentedControl.addTarget(self, action: #selector(self.action(_:)), forControlEvents: .ValueChanged)
+segmentedControl.addTarget(self, action: #selector(orderTypeChanged), for: .valueChanged)
 
 // You need to add DPSegmnetedControl to container
 self.view.addSubview(segmentedControl)
