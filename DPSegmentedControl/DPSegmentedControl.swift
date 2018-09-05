@@ -26,7 +26,7 @@ class DPSegmentedControl:UIControl {
     
     private var withIcon:Bool = true
     
-    private func setOrientation(orientation orientation:ComponentOrientation){
+    private func setOrientation(orientation:ComponentOrientation){
         switch orientation {
         case .LeftRight:
             componentOrientation = ComponentOrientation.LeftRight
@@ -35,7 +35,7 @@ class DPSegmentedControl:UIControl {
         }
     }
     
-    private var thumbColor: UIColor = UIColor.whiteColor() {
+    private var thumbColor: UIColor = UIColor.white {
         didSet{
             setThumbColor()
         }
@@ -45,7 +45,7 @@ class DPSegmentedControl:UIControl {
         thumbView.backgroundColor = thumbColor
     }
     
-    private var textColor: UIColor = UIColor.whiteColor()
+    private var textColor: UIColor = UIColor.white
     
     private func setTextColor(){
         for i in 0..<labels.count {
@@ -54,7 +54,7 @@ class DPSegmentedControl:UIControl {
         }
     }
     
-    private var selectedTextColor: UIColor = UIColor.blackColor() {
+    private var selectedTextColor: UIColor = UIColor.black {
         didSet{
             setSelectedTextColor()
         }
@@ -111,17 +111,17 @@ class DPSegmentedControl:UIControl {
     private func getIconFrameByOrientation(orientation:ComponentOrientation, index:Int, text:String) -> CGRect {
         let width = self.bounds.width/CGFloat(items.count)
         let height = self.bounds.height
-        let iconX = getIconX(width, textWidth: evaluateStringWidth(text))
+        let iconX = getIconX(itemWidth: width, textWidth: evaluateStringWidth(textToEvaluate: text))
         let x = width*CGFloat(index-1)
         
         switch orientation {
         case .LeftRight:
             let evaluateIconX = x + iconX
-            let iconRect = CGRectMake(evaluateIconX, 0, 16, height)
+            let iconRect = CGRect(x: evaluateIconX, y: 0, width: 16, height: height)
             return iconRect
         case .TopDown:
             let centre:CGFloat = x + ((width-16)/2)
-            let iconRect = CGRectMake(centre, 7, 16, 16)
+            let iconRect = CGRect(x: centre, y: 7, width: 16, height: 16) //CGRect(centre, 7, 16, 16)
             return iconRect
         }
     }
@@ -129,21 +129,21 @@ class DPSegmentedControl:UIControl {
     private func getTextFrameByOrintation(orientation:ComponentOrientation, text:String, index:Int) -> CGRect {
         let height = self.bounds.height
         let width = self.bounds.width/CGFloat(items.count)
-        let textX = getTextX(width, textWidth: evaluateStringWidth(text))
+        let textX = getTextX(itemWidth: width, textWidth: evaluateStringWidth(textToEvaluate: text))
         let xPosition = CGFloat(index) * width
         let evaluateTextX = xPosition + textX
         
         switch orientation {
         case .LeftRight:
-            let textRect = CGRectMake(evaluateTextX, 0, width, height)
+            let textRect = CGRect(x: evaluateTextX, y: 0, width: width, height: height)
             return textRect
         case .TopDown:
             let centre = evaluateTextX - 13
             let textRect:CGRect?
             if withIcon {
-                textRect = CGRectMake(centre, 18, width, 25)
+                textRect = CGRect(x: centre, y: 18, width: width, height: 25)
             }else {
-                textRect = CGRectMake(centre, 0, width, height)
+                textRect = CGRect(x: centre, y: 0, width: width, height: height)
             }
             return textRect!
         }
@@ -153,7 +153,7 @@ class DPSegmentedControl:UIControl {
     private func setupView(){
         layer.cornerRadius = 5
         setupLabels()
-        insertSubview(thumbView, atIndex: 0)
+        insertSubview(thumbView, at: 0)
     }
     
     private func setupLabels(){
@@ -162,14 +162,14 @@ class DPSegmentedControl:UIControl {
         for label in labels {
             label.removeFromSuperview()
         }
-        labels.removeAll(keepCapacity: true)
+        labels.removeAll(keepingCapacity: true)
         
         for index in 1...items.count {
             
             
-            let view = UIView.init(frame: CGRectZero)
+            let view = UIView.init(frame: CGRect.zero)
             
-            let label = UILabel(frame: CGRectZero)
+            let label = UILabel(frame: CGRect.zero)
             label.text = items[index-1]
             label.textColor = textColor
             view.addSubview(label)
@@ -178,8 +178,8 @@ class DPSegmentedControl:UIControl {
             let text = items[index-1]
             
             if withIcon {
-                self.img_icon = UIImageView(frame: getIconFrameByOrientation(self.componentOrientation, index: index, text: text))
-                self.img_icon.contentMode = .ScaleAspectFit
+                self.img_icon = UIImageView(frame: getIconFrameByOrientation(orientation: self.componentOrientation, index: index, text: text))
+                self.img_icon.contentMode = .scaleAspectFit
                 self.img_icon.image = icon[index-1]
                 
                 view.addSubview(self.img_icon)
@@ -215,7 +215,7 @@ class DPSegmentedControl:UIControl {
         super.layoutSubviews()
         
         var selectedFrame = self.bounds
-        let newWidth = CGRectGetWidth(selectedFrame) / CGFloat(items.count)
+        let newWidth = selectedFrame.width / CGFloat(items.count)
         selectedFrame.size.width = newWidth
         
         selectedFrame.origin.x = selectedFrame.origin.x + 4
@@ -227,7 +227,7 @@ class DPSegmentedControl:UIControl {
         if selectedIndex > 0 {
             setTextColor()
             setSelectedTextColor()
-            thumbView.frame = setDefaultSelectionPoint(selectedIndex)
+            thumbView.frame = setDefaultSelectionPoint(index: selectedIndex)
         }else {
             thumbView.frame = selectedFrame
         }
@@ -242,32 +242,32 @@ class DPSegmentedControl:UIControl {
             let text = items[index]
             
             
-            label.frame = getTextFrameByOrintation(self.componentOrientation, text: text, index: index)
+            label.frame = getTextFrameByOrintation(orientation: self.componentOrientation, text: text, index: index)
             
         }
     }
     
     private func evaluateStringWidth (textToEvaluate: String) -> CGFloat{
-        let lbl = UILabel(frame: CGRectZero)
+        let lbl = UILabel(frame: CGRect.zero)
         lbl.text = textToEvaluate
         lbl.sizeToFit()
         
         return lbl.frame.width
     }
     
-    internal override func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
-        let location = touch.locationInView(self)
+    internal override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        let location = touch.location(in: self)
         
         let labelWidth = self.bounds.width / CGFloat(items.count)
         
         var calculatedIndex : Int?
-        for (index, item) in labels.enumerate() {
+        for (index, item) in labels.enumerated() {
             
             let text = items[index]
             
-            let iconX = getIconX(labelWidth, textWidth: evaluateStringWidth(text))
+            let iconX = getIconX(itemWidth: labelWidth, textWidth: evaluateStringWidth(textToEvaluate: text))
             
-            let frame = CGRectMake(item.frame.origin.x - (iconX*2), 0, item.frame.width, self.bounds.height)
+            let frame = CGRect(x: item.frame.origin.x - (iconX*2), y: 0, width: item.frame.width, height: self.bounds.height)
             
             if frame.contains(location){
                 calculatedIndex = index
@@ -282,7 +282,7 @@ class DPSegmentedControl:UIControl {
         
         if calculatedIndex != nil {
             selectedIndex = calculatedIndex!
-            sendActionsForControlEvents(.ValueChanged)
+            sendActions(for: .valueChanged)
         }
         return false
     }
@@ -300,9 +300,9 @@ class DPSegmentedControl:UIControl {
         let text = items[selectedIndex]
         
         let labelWidth = self.bounds.width / CGFloat(items.count)
-        let iconX = getTextX(labelWidth, textWidth: evaluateStringWidth(text))
+        let iconX = getTextX(itemWidth: labelWidth, textWidth: evaluateStringWidth(textToEvaluate: text))
         
-        UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: [], animations: {
+        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: [], animations: {
             
             var labelFrame = self.selectedLabel.bounds
             
@@ -319,9 +319,9 @@ class DPSegmentedControl:UIControl {
             labelFrame.size.height = self.bounds.height - 8
             
             
-            self.thumbView.frame = self.setDefaultSelectionPoint(self.selectedIndex)
+            self.thumbView.frame = self.setDefaultSelectionPoint(index: self.selectedIndex)
             
-            }, completion: nil)
+        }, completion: nil)
         
         
     }
@@ -337,7 +337,7 @@ class DPSegmentedControl:UIControl {
         
         let text = items[selectedIndex]
         let labelWidth = self.bounds.width / CGFloat(items.count)
-        let iconX = getTextX(labelWidth, textWidth: evaluateStringWidth(text))
+        let iconX = getTextX(itemWidth: labelWidth, textWidth: evaluateStringWidth(textToEvaluate: text))
         
         if self.componentOrientation == ComponentOrientation.TopDown {
             selectedFrame.origin.x = self.selectedLabel.frame.origin.x - iconX + 4 + 13
@@ -349,9 +349,7 @@ class DPSegmentedControl:UIControl {
         selectedFrame.size.height = self.bounds.height - 8
         return selectedFrame
     }
-    
-    
-}
 
+}
 
 
